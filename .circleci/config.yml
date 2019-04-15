@@ -4,11 +4,11 @@ references:
   container_config: &container_config
     docker:
       - image: circleci/node:8
-    working_directory: ~/ant-design
+    working_directory: ~/lushuantd
 
   attach_workspace: &attach_workspace
     attach_workspace:
-      at: ~/ant-design
+      at: ~/lushuantd
 
   install_react: &install_react
     run: REACT=15 ./scripts/install-react.sh
@@ -81,7 +81,7 @@ jobs:
             npm ls
             true
       - persist_to_workspace:
-          root: ~/ant-design
+          root: ~/lushuantd
           paths:
             - node_modules
       - store_artifacts:
@@ -95,7 +95,7 @@ jobs:
       - run: npm run dist
       - run: node ./tests/dekko/dist.test.js
       - persist_to_workspace:
-          root: ~/ant-design
+          root: ~/lushuantd
           paths:
             - dist
 
@@ -107,7 +107,7 @@ jobs:
       - run: npm run compile
       - run: node ./tests/dekko/lib.test.js
       - persist_to_workspace:
-          root: ~/ant-design
+          root: ~/lushuantd
           paths:
             - lib
             - es
